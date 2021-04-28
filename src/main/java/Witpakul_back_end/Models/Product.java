@@ -1,6 +1,5 @@
 package Witpakul_back_end.Models;
 import lombok.Getter;
-import lombok.Builder;
 import lombok.Setter;
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -21,10 +20,7 @@ public class Product {
     private LocalDate product_manufactured_date;
     @ManyToOne  @JoinColumn(name = "brand_id",nullable = false)
     @Getter @Setter private Brand product_brand;
-    @ManyToMany(cascade = {
-            CascadeType.PERSIST,
-            CascadeType.MERGE
-    })
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "product_color" ,
             joinColumns = @JoinColumn(name = "product_code"),
             inverseJoinColumns = @JoinColumn(name = "color_id")

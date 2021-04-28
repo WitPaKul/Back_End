@@ -1,5 +1,4 @@
 package Witpakul_back_end.Controllers;
-
 import Witpakul_back_end.Repositories.Brands_Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
