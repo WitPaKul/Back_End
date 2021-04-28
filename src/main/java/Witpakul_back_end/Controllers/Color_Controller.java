@@ -11,7 +11,7 @@ public class Color_Controller {
     @Autowired
     private Colors_Repository Colors_Repository;
 
-    @GetMapping("/api/color")
+    @GetMapping("/color")
     public List<Color> listAllColors(){
         return Colors_Repository.findAll();
     }

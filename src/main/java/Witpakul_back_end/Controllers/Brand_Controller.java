@@ -11,7 +11,7 @@ public class Brand_Controller {
     @Autowired
     private Brands_Repository Brands_Repository;
 
-    @GetMapping("/api/brand")
+    @GetMapping("/brand")
     public List<Brand> listAllBrands(){
         return Brands_Repository.findAll();
     }
