@@ -7,9 +7,9 @@ import java.util.List;
 @Entity
 public class Product {
     @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Getter @Setter @Column(name = "product_code")
-    private String product_code;
+    private int product_code;
     @Getter @Setter @Column(name = "product_name")
     private String product_name;
     @Getter @Setter @Column(name = "product_description")
@@ -18,6 +18,8 @@ public class Product {
     private float product_price;
     @Getter @Setter @Column(name = "manufactured_date")
     private LocalDate product_manufactured_date;
+    @Getter @Setter @Column(name = "product_images")
+    private String product_images;
     @ManyToOne  @JoinColumn(name = "brand_id",nullable = false)
     @Getter @Setter private Brand product_brand;
     @ManyToMany(cascade = CascadeType.ALL)
@@ -26,7 +28,7 @@ public class Product {
             inverseJoinColumns = @JoinColumn(name = "color_id")
     )
     @Getter @Setter private List<Color> product_colors;
-    public Product(String product_code, String product_name, String product_description, float product_price, LocalDate product_manufactured_date, Brand product_brand, List<Color> product_colors) {
+    public Product(int product_code, String product_name, String product_description, float product_price, LocalDate product_manufactured_date, Brand product_brand, List<Color> product_colors,String product_images) {
         this.product_code = product_code;
         this.product_name = product_name;
         this.product_description = product_description;
@@ -34,6 +36,7 @@ public class Product {
         this.product_manufactured_date = product_manufactured_date;
         this.product_brand = product_brand;
         this.product_colors = product_colors;
+        this.product_images = product_images;
     }
     public Product(){
 
