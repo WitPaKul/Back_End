@@ -4,8 +4,6 @@ services:
     container_name: WitPaKul_Backend
     build: .
     image: backend
-    ports:
-    - "5000:5000"
 networks:
    defualt:
     external:
