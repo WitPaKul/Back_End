@@ -6,3 +6,7 @@ services:
     image: backend
     ports:
     - "5000:5000"
+networks:
+   defualt:
+    external:
+	name: witpakul_network
