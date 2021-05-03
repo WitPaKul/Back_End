@@ -10,4 +10,8 @@ public class Color {
     private int color_id;
     @Getter @Column(name = "color_name")
     private String color_name;
+    public String toString() {
+        return "color_id: " + color_id + "\n" +
+                "color_name: " + color_name;
+    }
 }
