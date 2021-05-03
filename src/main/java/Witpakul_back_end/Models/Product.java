@@ -44,4 +44,15 @@ public class Product {
     public Product(){
 
     }
+    public String toString() {
+        return "product_code: " + product_code + "\n" +
+                "product_name: " + product_name + "\n" +
+                "product_description: " + product_description + "\n" +
+                "product_price: " + product_price + "\n" +
+                "product_manufactured_date: " + product_manufactured_date + "\n" +
+                "product_warranty: " + product_warranty + "\n" +
+                "product_brand: " + product_brand + "\n" +
+                "product_colors: " + product_colors + "\n" +
+                "product_images: " + product_images + "\n";
+    }
 }
