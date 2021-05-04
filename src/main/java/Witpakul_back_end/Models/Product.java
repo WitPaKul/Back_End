@@ -41,28 +41,14 @@ public class Product {
     public Product(){
 
     }
-<<<<<<< HEAD
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> develop
     public String toString() {
         return "product_code: " + product_code + "\n" +
                 "product_name: " + product_name + "\n" +
                 "product_description: " + product_description + "\n" +
                 "product_price: " + product_price + "\n" +
                 "product_manufactured_date: " + product_manufactured_date + "\n" +
-<<<<<<< HEAD
-                "product_warranty: " + product_warranty + "\n" +
                 "product_brand: " + product_brand + "\n" +
                 "product_colors: " + product_colors + "\n" +
-                "product_images: " + product_images + "\n";
+                "product_image: " + product_image + "\n";
     }
-=======
-                "product_brand: " + product_brand + "\n" +
-                "product_colors: " + product_colors + "\n" +
-                "product_images: " + product_image + "\n";
-    }
->>>>>>> Stashed changes
->>>>>>> develop
 }
