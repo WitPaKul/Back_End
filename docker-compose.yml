@@ -5,6 +5,6 @@ services:
     build: .
     image: backend
 networks:
-   defualt:
+   default:
     external:
         name: witpakul_network
