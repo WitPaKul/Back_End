@@ -41,8 +41,6 @@ public class Product {
     public Product(){
 
     }
-<<<<<<< Updated upstream
-=======
     public String toString() {
         return "product_code: " + product_code + "\n" +
                 "product_name: " + product_name + "\n" +
@@ -53,5 +51,4 @@ public class Product {
                 "product_colors: " + product_colors + "\n" +
                 "product_images: " + product_image + "\n";
     }
->>>>>>> Stashed changes
 }
