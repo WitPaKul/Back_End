@@ -4,10 +4,12 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
+
 @Entity
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter @Setter @Column(name = "product_code")
     private int product_code;
     @Getter @Setter @Column(name = "product_name")
@@ -22,13 +24,13 @@ public class Product {
     private String product_image;
     @ManyToOne  @JoinColumn(name = "brand_id",nullable = false)
     @Getter @Setter private Brand product_brand;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "Product_color" ,
-            joinColumns = @JoinColumn(name = "product_code"),
-            inverseJoinColumns = @JoinColumn(name = "color_id")
+            joinColumns = @JoinColumn(name = "product_code", referencedColumnName = "product_code"),
+            inverseJoinColumns = @JoinColumn(name = "color_id", referencedColumnName = "color_id")
     )
-    @Getter @Setter private List<Color> product_colors;
-    public Product(int product_code, String product_name, String product_description, float product_price, LocalDate product_manufactured_date, Brand product_brand, List<Color> product_colors,String product_image) {
+    @Getter @Setter private Set<Color> product_colors;
+    public Product(int product_code, String product_name, String product_description, float product_price, LocalDate product_manufactured_date, Brand product_brand, Set<Color> product_colors,String product_image) {
         this.product_code = product_code;
         this.product_name = product_name;
         this.product_description = product_description;
