@@ -10,7 +10,7 @@ import Witpakul_back_end.Repositories.Products_Repository;
 import java.util.List;
 
 
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:8081")
 @RestController
 public class Product_Controller {
     @Autowired
@@ -21,9 +21,10 @@ public class Product_Controller {
         return Products_Repository.findAll();
     }
     @PostMapping("/add_product")
-    public Product addProduct(@RequestBody Product newProduct) {
-        System.out.println(newProduct);
+    public int addProduct(@RequestBody Product newProduct) {
         newProduct = Products_Repository.save(newProduct);
-        return newProduct;
+        newProduct.setProduct_image("/image/get/" + newProduct.getId() + "_" + newProduct.getProduct_image());
+        newProduct = Products_Repository.save(newProduct);
+        return newProduct.getProduct_code();
     }
 }

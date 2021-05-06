@@ -12,6 +12,9 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter @Setter @Column(name = "product_code")
     private int product_code;
+    public int getId() {
+        return product_code;
+    }
     @Getter @Setter @Column(name = "product_name")
     private String product_name;
     @Getter @Setter @Column(name = "product_description")
