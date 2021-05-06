@@ -10,4 +10,8 @@ public class Brand {
     private int brand_id;
     @Getter @Column(name = "brand_name")
     private String brand_name;
+    public String toString() {
+        return "brand_id: " + brand_id + "\n" +
+                "brand_name: " + brand_name;
+    }
 }
