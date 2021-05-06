@@ -23,7 +23,7 @@ public class Product_Controller {
     @PostMapping("/add_product")
     public Product addProduct(@RequestBody Product newProduct) {
         System.out.println(newProduct);
+        newProduct = Products_Repository.save(newProduct);
         return newProduct;
-//        return Products_Repository.save(newEmployee);
     }
 }
