@@ -16,9 +16,8 @@ import java.util.List;
 import static java.lang.Integer.parseInt;
 
 @RestController
-
 @RequestMapping("/image")
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin
 public class Image_Controller {
     @Autowired
     private Products_Repository Products_Repository;
@@ -33,7 +32,6 @@ public class Image_Controller {
         return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
     }
 
-    @CrossOrigin(origins = "http://localhost:8081")
     @PostMapping ("/add/{id}")
     public ResponseEntity<Object> uploadImage(@RequestParam("file") MultipartFile file, @PathVariable("id")String id)throws IOException{
         File myFile = new File(IMAGE_PATH + id);
