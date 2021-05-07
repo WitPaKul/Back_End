@@ -1,12 +1,12 @@
 package Witpakul_back_end.Controllers;
 import Witpakul_back_end.Models.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 import Witpakul_back_end.Repositories.Products_Repository;
+import Witpakul_back_end.Repositories.Products_Repository;
+import org.springframework.web.client.HttpServerErrorException;
+
 import java.util.List;
 
 
@@ -26,5 +26,10 @@ public class Product_Controller {
         newProduct.setProduct_image("/image/get/" + newProduct.getId() + "_" + newProduct.getProduct_image());
         newProduct = Products_Repository.save(newProduct);
         return newProduct.getProduct_code();
+    }
+    @DeleteMapping("/delete_product/{id}")
+    private String deleteProduct(@PathVariable("id") int id) {
+        Products_Repository.deleteById(id);
+        return "Deleted";
     }
 }
