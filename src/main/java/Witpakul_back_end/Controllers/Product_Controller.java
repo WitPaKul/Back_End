@@ -10,7 +10,7 @@ import Witpakul_back_end.Repositories.Products_Repository;
 import java.util.List;
 
 
-@CrossOrigin(origins = "http://localhost:8081")
+@CrossOrigin
 @RestController
 public class Product_Controller {
     @Autowired
