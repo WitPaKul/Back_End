@@ -42,9 +42,9 @@ public class Product_Controller {
         }
     }
     @PutMapping("/edit_product/{id}")
-    private String editProduct(@RequestBody Product editedProduct) {
+    private int editProduct(@RequestBody Product editedProduct) {
         System.out.println(editedProduct);
         Products_Repository.save(editedProduct);
-        return "Edited";
+        return editedProduct.getProduct_code();
     }
 }
