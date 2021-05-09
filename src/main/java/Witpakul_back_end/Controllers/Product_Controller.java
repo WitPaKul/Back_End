@@ -21,6 +21,7 @@ public class Product_Controller {
     public List<Product> listAllProducts(){
         return Products_Repository.findAll();
     }
+
     @PostMapping("/add_product")
     public int addProduct(@RequestBody Product newProduct) {
 
@@ -33,13 +34,17 @@ public class Product_Controller {
     //เช็คต้องใส่เป็นเลข ID ตัวเลข
     @DeleteMapping("/delete_product/{id}")
     private String deleteProduct(@PathVariable("id") int id) {
-
-   try{
-        Products_Repository.deleteById(id);
-       return "Deleted";
-    } catch(Exception e) {
-       throw new ExceptionRequest("delete product not Found OK Try it again");
-   }
+        try{
+            Products_Repository.deleteById(id);
+            return "Deleted";
+        } catch(Exception e) {
+            throw new ExceptionRequest("delete product not Found OK Try it again");
+        }
     }
-
+    @PutMapping("/edit_product/{id}")
+    private String editProduct(@RequestBody Product editedProduct) {
+        System.out.println(editedProduct);
+        Products_Repository.save(editedProduct);
+        return "Edited";
+    }
 }
