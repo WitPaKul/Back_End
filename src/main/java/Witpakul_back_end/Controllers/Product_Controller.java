@@ -31,7 +31,6 @@ public class Product_Controller {
 
     }
 
-    //เช็คต้องใส่เป็นเลข ID ตัวเลข
     @DeleteMapping("/delete_product/{id}")
     private String deleteProduct(@PathVariable("id") int id) {
         try {
@@ -42,11 +41,9 @@ public class Product_Controller {
         }
     }
 
-    //เช็คต้องใส่เป็นเลข ID ตัวเลข
-    @PutMapping("/edit_product/{id}")
+    @PutMapping("/edit_product")
     private int editProduct(@RequestBody Product editedProduct) {
-            System.out.println(editedProduct);
-            Products_Repository.save(editedProduct);
-            return editedProduct.getProduct_code();
-        }
+        Products_Repository.save(editedProduct);
+        return editedProduct.getProduct_code();
     }
+}

@@ -24,7 +24,7 @@ public class Image_Controller {
     @Autowired
     private Products_Repository Products_Repository;
 
-    private static final String IMAGE_PATH = "./public/pictures/";
+    private static final String IMAGE_PATH = "./pictures/";
 
     @GetMapping("/get/{id:.+}")
     public ResponseEntity<byte[]> getImage(@PathVariable("id")String id)  {
@@ -59,7 +59,7 @@ public class Image_Controller {
         return  new ResponseEntity<>("Uploaded Successfully", HttpStatus.OK);
 
     }
-            //เปลื่ยนทั้งฺbackend และ frontend Test ไม่ต้องใส่ .png
+
     @PutMapping("/edit/{id:.+}")
     public ResponseEntity<Object> changeImage(@RequestParam("file")MultipartFile file,@PathVariable("id")String id)   {
 
