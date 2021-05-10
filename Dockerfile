@@ -1,6 +1,7 @@
 ### STAGE 1: Build ###
 FROM maven:3.6.0-jdk-11-slim AS build
 COPY pom.xml /
+VOLUME /tmp
 COPY src /src
 RUN mvn clean install
 

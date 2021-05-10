@@ -4,7 +4,9 @@ services:
     container_name: WitPaKul_Backend
     build: .
     image: backend
+    volumes:
+      - ./pictures:/pictures
 networks:
-   default:
+  default:
     external:
-        name: witpakul_network
+      name: witpakul_network
