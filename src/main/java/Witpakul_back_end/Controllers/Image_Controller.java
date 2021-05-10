@@ -25,7 +25,7 @@ public class Image_Controller {
     private Products_Repository Products_Repository;
 
     private static final String IMAGE_PATH = "./pictures/";
-
+    //   ถ้า Test Postman ใช้ /image/get/ ID=ชื่อรูป
     @GetMapping("/get/{id:.+}")
     public ResponseEntity<byte[]> getImage(@PathVariable("id")String id)  {
 
@@ -41,7 +41,7 @@ public class Image_Controller {
             throw new ExceptionRequest("Image not Found OK Try it again");
         }
     }
-
+    //   ถ้า Test Postman ใช้ /image/add/ + file รูป
     @PostMapping ("/add/{id}")
     public ResponseEntity<Object> uploadImage(@RequestParam("file") MultipartFile file, @PathVariable("id")String id) throws IOException{
 
@@ -59,7 +59,7 @@ public class Image_Controller {
         return  new ResponseEntity<>("Uploaded Successfully", HttpStatus.OK);
 
     }
-
+    //   ถ้า Test Postman ใช้ /image/edit/ + ซื่อ file ที่จะเปลื่ยน
     @PutMapping("/edit/{id:.+}")
     public ResponseEntity<Object> changeImage(@RequestParam("file")MultipartFile file,@PathVariable("id")String id)   {
 
@@ -75,7 +75,7 @@ public class Image_Controller {
         }
 
     }
-
+    //   ถ้า Test Postman ใช้  /image/delete/ + ซื่อ file
     @DeleteMapping("/delete/{id}")
     public  ResponseEntity<Object> deleteImage(@PathVariable String id) {
         try{
