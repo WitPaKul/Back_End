@@ -24,10 +24,8 @@ public class Image_Controller {
     @Autowired
     private Products_Repository Products_Repository;
 
-    private static final String IMAGE_PATH = "./public/pictures/";
-
-
-
+    private static final String IMAGE_PATH = "./pictures/";
+    //   ถ้า Test Postman ใช้ /image/get/ ID=ชื่อรูป
     @GetMapping("/get/{id:.+}")
     public ResponseEntity<byte[]> getImage(@PathVariable("id")String id)  {
 
@@ -42,14 +40,14 @@ public class Image_Controller {
             e.printStackTrace(System.out);
             throw new ExceptionRequest("Image not Found OK Try it again");
         }
-        }
-
+    }
+    //   ถ้า Test Postman ใช้ /image/add/ + file รูป
     @PostMapping ("/add/{id}")
-    public ResponseEntity<Object> uploadImage(@RequestParam("file") MultipartFile file, @PathVariable("id")String id) {
+    public ResponseEntity<Object> uploadImage(@RequestParam("file") MultipartFile file, @PathVariable("id")String id) throws IOException{
 
-        try {
-            // เพราะถ้าไม่ใส่ExceptionRequest ไม่เกิด
-            // + file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".")));
+            if (file.getOriginalFilename() == "") {
+                throw new ExceptionRequest("ADD Image not Found OK Try it again");
+            }
         File myFile = new File(IMAGE_PATH + id );
         System.out.println("Successfully");
         if(myFile.createNewFile()) {
@@ -59,19 +57,14 @@ public class Image_Controller {
 
         }
         return  new ResponseEntity<>("Uploaded Successfully", HttpStatus.OK);
-        } catch(Exception e) {
-
-            throw new ExceptionRequest("ADD Image not Found OK Try it again");
-        }
 
     }
-//เปลื่ยนทั้งฺbackend และ fronten Test ไม่ต้องใส่ .png
+    //   ถ้า Test Postman ใช้ /image/edit/ + ซื่อ file ที่จะเปลื่ยน
     @PutMapping("/edit/{id:.+}")
     public ResponseEntity<Object> changeImage(@RequestParam("file")MultipartFile file,@PathVariable("id")String id)   {
 
         try {
-            // เพราะถ้าไม่ใส่ExceptionRequest ไม่เกิด
-            // + file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".")));
+
             FileOutputStream fo = new FileOutputStream(IMAGE_PATH +  id   + file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".")));
             fo.write(file.getBytes());
             fo.close();
@@ -80,23 +73,9 @@ public class Image_Controller {
 
             throw new ExceptionRequest("edit Image not Found OK Try it again");
         }
-//        try {
-//        String IdString[] = id.split("\\.(?=[^\\.]+$)");
-//           int hasId = parseInt(IdString[0]);
-//            if(hasFoundId(hasId)){
-//                FileOutputStream fo = new FileOutputStream(IMAGE_PATH +  id  + file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf(".")));
-//                fo.write(file.getBytes());
-//                fo.close();
-//                return  new ResponseEntity<>("Change Successfully", HttpStatus.OK);
-//            }
-//        }  catch(Exception e) {
-//
-//            throw new ExceptionRequest("edit Image not Found OK Try it again");
-//        }
-//        return null;
 
     }
-
+    //   ถ้า Test Postman ใช้  /image/delete/ + ซื่อ file
     @DeleteMapping("/delete/{id}")
     public  ResponseEntity<Object> deleteImage(@PathVariable String id) {
         try{
@@ -106,39 +85,9 @@ public class Image_Controller {
             }
         }catch (Exception e){
             System.out.println(e);
-
         }
         throw new ExceptionRequest("NOT Delete File");
 
-
-//        File myFile = new File(IMAGE_PATH + id  );
-//        myFile.delete();
-//
-//        System.out.println("OK Successfully");
-
-//            String IdString[] = id.split("\\.(?=[^\\.]+$)");
-//            int hasId = parseInt(IdString[0]);
-//            if (hasFoundId(hasId)) {
-//                File myFile = new File(IMAGE_PATH + id);
-//                myFile.delete();
-//
-//                System.out.println("OK Successfully");
-//            } else {
-//                System.out.println("NO delete");
-//            }
-//        return null;
     }
-
-
-//ใช้เชร็คว่า IDรูปเท่าproductไหม
-//    public boolean hasFoundId(int id){
-//        List<Product> product = Products_Repository.findAll();
-//        for (int i = 0; i < product.size(); i++) {
-//            if(product.get(i).getProduct_code() == id){
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
 
 }

@@ -18,32 +18,31 @@ public class Product_Controller {
     private Products_Repository Products_Repository;
 
     @GetMapping("/all")
-    public List<Product> listAllProducts(){
+    public List<Product> listAllProducts() {
         return Products_Repository.findAll();
     }
 
     @PostMapping("/add_product")
     public int addProduct(@RequestBody Product newProduct) {
-
         newProduct = Products_Repository.save(newProduct);
-        newProduct.setProduct_image(  newProduct.getId() + "_" + newProduct.getProduct_image());
+        newProduct.setProduct_image(newProduct.getId() + "_" + newProduct.getProduct_image());
         newProduct = Products_Repository.save(newProduct);
         return newProduct.getProduct_code();
 
     }
-    //เช็คต้องใส่เป็นเลข ID ตัวเลข
+
     @DeleteMapping("/delete_product/{id}")
     private String deleteProduct(@PathVariable("id") int id) {
-        try{
+        try {
             Products_Repository.deleteById(id);
             return "Deleted";
-        } catch(Exception e) {
+        } catch (Exception e) {
             throw new ExceptionRequest("delete product not Found OK Try it again");
         }
     }
-    @PutMapping("/edit_product/{id}")
+
+    @PutMapping("/edit_product")
     private int editProduct(@RequestBody Product editedProduct) {
-        System.out.println(editedProduct);
         Products_Repository.save(editedProduct);
         return editedProduct.getProduct_code();
     }
